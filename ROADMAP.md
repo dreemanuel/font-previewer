@@ -121,6 +121,13 @@ This document tracks planned features and improvements for the Font Previewer ap
 
 ### Preview Enhancements
 
+#### ~~Drag & Drop Reordering~~ ✅ (Completed - Component Order)
+- ~~Drag and drop to rearrange preview elements~~ ✅
+- ~~Persist custom order across sessions~~ ✅
+- Reorder typography tokens in previewer (future)
+- Reset to default order option (future)
+- **Future:** Direct drag & drop in preview canvas (drag components directly in the preview area for more intuitive UX)
+
 #### Responsive Preview
 - Mobile/tablet/desktop breakpoints
 - Custom viewport sizes
@@ -188,25 +195,26 @@ This document tracks planned features and improvements for the Font Previewer ap
 ### Phase 2 - Enhanced Controls
 6. Line height control
 7. Letter spacing control
-8. More component templates
-9. Recently used fonts
+8. ~~Drag & drop reordering for previewer~~ ✅ (Completed)
+9. More component templates
+10. Recently used fonts
 
 ### Phase 3 - Sharing & Export
-10. Share via URL
-11. Design tokens export
-12. Image export
+11. Share via URL
+12. Design tokens export
+13. Image export
 
 ### Phase 4 - Advanced Features
-13. Color harmony generator
-14. Accessibility checker
-15. Font pairing suggestions
-16. Responsive preview
+14. Color harmony generator
+15. Accessibility checker
+16. Font pairing suggestions
+17. Responsive preview
 
 ### Phase 5 - User Accounts & Social
-17. Google & GitHub SSO authentication
-18. Cloud save (database backend)
-19. User dashboard
-20. Public sharing & community gallery
+18. Google & GitHub SSO authentication
+19. Cloud save (database backend)
+20. User dashboard
+21. Public sharing & community gallery
 
 ---
 
@@ -231,4 +239,4 @@ Feel free to open issues or PRs for any of these features! Priority will be give
 
 ---
 
-*Last updated: December 2024*
+*Last updated: December 2025*

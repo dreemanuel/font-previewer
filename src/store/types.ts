@@ -83,6 +83,7 @@ export interface DesignState {
     color: string
   ) => void
   toggleComponent: (componentId: ComponentId) => void
+  reorderComponents: (fromIndex: number, toIndex: number) => void
   addVariation: () => void
   removeVariation: (id: string) => void
   setActiveVariation: (id: string) => void

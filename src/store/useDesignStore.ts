@@ -112,6 +112,15 @@ export const useDesignStore = create<DesignState>()(
         })
       },
 
+      reorderComponents: (fromIndex, toIndex) => {
+        set((state) => {
+          const newComponents = [...state.selectedComponents]
+          const [removed] = newComponents.splice(fromIndex, 1)
+          newComponents.splice(toIndex, 0, removed)
+          return { selectedComponents: newComponents }
+        })
+      },
+
       // Variation management
       addVariation: () => {
         const { variations, activeVariationId } = get()
