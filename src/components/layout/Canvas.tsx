@@ -1,4 +1,4 @@
-import { Grid3X3, FileText, Columns } from 'lucide-react'
+import { Grid3X3, FileText, Columns, X } from 'lucide-react'
 import { useState } from 'react'
 import { useDesignStore } from '../../store'
 import { templateComponents } from '../templates'
@@ -13,6 +13,7 @@ export function Canvas() {
   const viewMode = useDesignStore((s) => s.viewMode)
   const setViewMode = useDesignStore((s) => s.setViewMode)
   const setActiveVariation = useDesignStore((s) => s.setActiveVariation)
+  const removeVariation = useDesignStore((s) => s.removeVariation)
 
   const [compareMode, setCompareMode] = useState<CompareMode>('single')
 
@@ -33,28 +34,12 @@ export function Canvas() {
       colors: variation.colorTokens,
     }
 
-    const isActive = variationId === activeVariationId
-
     return (
       <div
         key={variationId}
         className={`flex-1 min-w-0 ${isCompare ? 'overflow-auto' : ''}`}
         onClick={() => isCompare && setActiveVariation(variationId)}
       >
-        {isCompare && (
-          <div
-            className={`sticky top-0 z-10 px-4 py-2 text-sm font-medium border-b ${
-              isActive
-                ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800'
-                : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700'
-            }`}
-          >
-            {variation.name}
-            {isActive && (
-              <span className="ml-2 text-xs opacity-70">(active)</span>
-            )}
-          </div>
-        )}
         <div className={isCompare ? 'p-4' : ''}>
           {viewMode === 'grid' && !isCompare ? (
             <div
@@ -93,9 +78,9 @@ export function Canvas() {
   }
 
   return (
-    <main className="flex-1 flex flex-col bg-white dark:bg-gray-800 overflow-hidden">
+    <main className="h-screen overflow-auto bg-white dark:bg-gray-800">
       {/* Header */}
-      <header className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between shrink-0">
+      <header className="sticky top-0 z-20 p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between bg-white dark:bg-gray-800">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Preview</span>
@@ -162,7 +147,7 @@ export function Canvas() {
       </header>
 
       {/* Preview Area */}
-      <div className="flex-1 overflow-auto bg-gray-50 dark:bg-gray-900">
+      <div className="bg-gray-50 dark:bg-gray-900 min-h-[calc(100vh-65px)]">
         {!hasSelectedComponents ? (
           <div className="h-full flex items-center justify-center p-8">
             <div className="max-w-md text-center">
@@ -179,8 +164,47 @@ export function Canvas() {
             </div>
           </div>
         ) : compareMode === 'compare' && hasMultipleVariations ? (
-          <div className="flex h-full divide-x divide-gray-200 dark:divide-gray-700">
-            {variations.map((variation) => renderPreview(variation.id, true))}
+          <div className="flex flex-col">
+            {/* Sticky variation headers row */}
+            <div className="sticky top-[57px] z-10 flex divide-x divide-gray-200 dark:divide-gray-700 border-b border-gray-200 dark:border-gray-700">
+              {variations.map((variation) => {
+                const isActive = variation.id === activeVariationId
+                return (
+                  <div
+                    key={`header-${variation.id}`}
+                    className={`flex-1 px-4 py-2 text-sm font-medium flex items-center justify-between cursor-pointer ${
+                      isActive
+                        ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200'
+                        : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                    onClick={() => setActiveVariation(variation.id)}
+                  >
+                    <div>
+                      {variation.name}
+                      {isActive && (
+                        <span className="ml-2 text-xs">(active)</span>
+                      )}
+                    </div>
+                    {variations.length > 1 && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          removeVariation(variation.id)
+                        }}
+                        className="p-1 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors rounded hover:bg-gray-200 dark:hover:bg-gray-600"
+                        title="Remove variation"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+            {/* Content columns */}
+            <div className="flex divide-x divide-gray-200 dark:divide-gray-700">
+              {variations.map((variation) => renderPreview(variation.id, true))}
+            </div>
           </div>
         ) : (
           <div className="p-8">{renderPreview(activeVariationId)}</div>

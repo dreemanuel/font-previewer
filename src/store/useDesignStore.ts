@@ -153,6 +153,31 @@ export const useDesignStore = create<DesignState>()(
         })
       },
 
+      duplicateVariation: (id) => {
+        const { variations } = get()
+        if (variations.length >= MAX_VARIATIONS) return
+
+        const sourceIndex = variations.findIndex((v) => v.id === id)
+        if (sourceIndex === -1) return
+
+        const sourceVariation = variations[sourceIndex]
+        const newVariation = createDefaultVariation(`${sourceVariation.name} (copy)`)
+        newVariation.typography = { ...sourceVariation.typography }
+        newVariation.colorTokens = { ...sourceVariation.colorTokens }
+
+        // Insert after the source variation
+        const newVariations = [
+          ...variations.slice(0, sourceIndex + 1),
+          newVariation,
+          ...variations.slice(sourceIndex + 1),
+        ]
+
+        set({
+          variations: newVariations,
+          activeVariationId: newVariation.id,
+        })
+      },
+
       removeVariation: (id) => {
         const { variations, activeVariationId } = get()
         if (variations.length <= 1) return

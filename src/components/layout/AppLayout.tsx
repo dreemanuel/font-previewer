@@ -7,7 +7,7 @@ export function AppLayout() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(true)
 
   return (
-    <div className="relative h-screen bg-white dark:bg-gray-900 overflow-hidden">
+    <div className="relative h-screen bg-white dark:bg-gray-900">
       {/* Canvas - always full width */}
       <Canvas />
 

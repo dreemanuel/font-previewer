@@ -1,4 +1,4 @@
-import { Layers, Plus, X } from 'lucide-react'
+import { Layers, Plus, X, Copy } from 'lucide-react'
 import { useDesignStore } from '../../store'
 
 const MAX_VARIATIONS = 4
@@ -7,6 +7,7 @@ export function VariationsSection() {
   const variations = useDesignStore((s) => s.variations)
   const activeVariationId = useDesignStore((s) => s.activeVariationId)
   const addVariation = useDesignStore((s) => s.addVariation)
+  const duplicateVariation = useDesignStore((s) => s.duplicateVariation)
   const removeVariation = useDesignStore((s) => s.removeVariation)
   const setActiveVariation = useDesignStore((s) => s.setActiveVariation)
 
@@ -39,7 +40,7 @@ export function VariationsSection() {
           return (
             <div
               key={variation.id}
-              className={`flex items-center justify-between p-2 rounded-lg cursor-pointer transition-colors ${
+              className={`group flex items-center justify-between p-2 rounded-lg cursor-pointer transition-colors ${
                 isActive
                   ? 'bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800'
                   : 'hover:bg-gray-100 dark:hover:bg-gray-800 border border-transparent'
@@ -65,19 +66,36 @@ export function VariationsSection() {
                 </span>
               </div>
 
-              {canRemoveVariation && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    removeVariation(variation.id)
-                  }}
-                  className="p-1 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100"
-                  style={{ opacity: isActive ? 1 : undefined }}
-                  title="Remove variation"
-                >
-                  <X className="w-3 h-3" />
-                </button>
-              )}
+              <div className="flex items-center gap-1">
+                {canAddVariation && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      duplicateVariation(variation.id)
+                    }}
+                    className={`p-1 text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors ${
+                      isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}
+                    title="Duplicate variation"
+                  >
+                    <Copy className="w-3 h-3" />
+                  </button>
+                )}
+                {canRemoveVariation && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      removeVariation(variation.id)
+                    }}
+                    className={`p-1 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors ${
+                      isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}
+                    title="Remove variation"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
             </div>
           )
         })}

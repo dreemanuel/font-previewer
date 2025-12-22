@@ -89,6 +89,7 @@ export interface DesignState {
   reorderComponents: (fromIndex: number, toIndex: number) => void
   addRecentFont: (font: string) => void
   addVariation: () => void
+  duplicateVariation: (id: string) => void
   removeVariation: (id: string) => void
   setActiveVariation: (id: string) => void
   setViewMode: (mode: ViewMode) => void
