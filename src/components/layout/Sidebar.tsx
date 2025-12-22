@@ -1,4 +1,4 @@
-import { RotateCcw, Moon, Sun } from 'lucide-react'
+import { RotateCcw, Moon, Sun, PanelLeftClose } from 'lucide-react'
 import { TypographySection } from '../typography'
 import { ColorsSection } from '../colors'
 import { ComponentsSection } from '../components-select'
@@ -6,7 +6,11 @@ import { VariationsSection } from '../variations'
 import { useDesignStore } from '../../store'
 import { useDarkMode } from '../../hooks/useDarkMode'
 
-export function Sidebar() {
+interface SidebarProps {
+  onClose: () => void
+}
+
+export function Sidebar({ onClose }: SidebarProps) {
   const reset = useDesignStore((s) => s.reset)
   const { isDark, toggle } = useDarkMode()
 
@@ -17,7 +21,7 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="w-80 h-full bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+    <aside className="w-80 h-full bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col shadow-2xl">
       {/* Header */}
       <header className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
         <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Font Previewer</h1>
@@ -35,6 +39,13 @@ export function Sidebar() {
             title="Reset to defaults"
           >
             <RotateCcw className="w-4 h-4" />
+          </button>
+          <button
+            onClick={onClose}
+            className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            title="Close panel"
+          >
+            <PanelLeftClose className="w-4 h-4" />
           </button>
         </div>
       </header>
