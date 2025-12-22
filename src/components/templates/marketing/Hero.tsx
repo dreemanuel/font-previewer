@@ -1,5 +1,5 @@
 import type { TemplateProps } from '../types'
-import { getText, defaultText } from '../types'
+import { getText, defaultText, getFontStyle } from '../types'
 
 export function Hero({ typography, colors }: TemplateProps) {
   return (
@@ -9,14 +9,14 @@ export function Hero({ typography, colors }: TemplateProps) {
     >
       <div className="max-w-4xl mx-auto text-center">
         <h1
-          className="text-5xl font-bold mb-6"
-          style={{ fontFamily: typography.h1.font }}
+          className="font-bold mb-6"
+          style={getFontStyle(typography.h1)}
         >
           {getText(typography.h1, defaultText.h1)}
         </h1>
         <p
-          className="text-xl mb-8 opacity-80"
-          style={{ fontFamily: typography.p1.font }}
+          className="mb-8 opacity-80"
+          style={getFontStyle(typography.p1)}
         >
           {getText(typography.p1, defaultText.p1)}
         </p>

@@ -18,7 +18,7 @@ export function ColorSwatch({ color, onChange, onDelete, size = 'md' }: ColorSwa
     <div className="relative">
       <button
         onClick={() => setShowPicker(true)}
-        className={`${sizeClasses} rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-colors relative group`}
+        className={`${sizeClasses} rounded-lg border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 transition-colors relative group`}
         style={{ backgroundColor: color }}
         title={color}
       >

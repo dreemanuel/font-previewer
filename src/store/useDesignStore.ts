@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { DesignState } from './types'
+import type { DesignState, TypographyConfig } from './types'
 import {
   getDefaultState,
   createDefaultVariation,
@@ -9,6 +9,30 @@ import {
 } from './defaults'
 
 const STORAGE_KEY = 'font-previewer-state'
+const STORAGE_VERSION = 2 // Bump version when schema changes
+
+// Default sizes for each token
+const DEFAULT_SIZES = {
+  h1: 48,
+  h2: 36,
+  h3: 24,
+  p1: 18,
+  p2: 14,
+} as const
+
+// Migrate typography to ensure all tokens have size
+function migrateTypography(typography: TypographyConfig): TypographyConfig {
+  const tokens = ['h1', 'h2', 'h3', 'p1', 'p2'] as const
+  const migrated = { ...typography }
+
+  for (const token of tokens) {
+    if (!migrated[token].size) {
+      migrated[token] = { ...migrated[token], size: DEFAULT_SIZES[token] }
+    }
+  }
+
+  return migrated
+}
 const MAX_VARIATIONS = 4
 const MAX_PALETTE_COLORS = 8
 
@@ -139,6 +163,7 @@ export const useDesignStore = create<DesignState>()(
     }),
     {
       name: STORAGE_KEY,
+      version: STORAGE_VERSION,
       partialize: (state) => ({
         palette: state.palette,
         selectedComponents: state.selectedComponents,
@@ -146,6 +171,19 @@ export const useDesignStore = create<DesignState>()(
         activeVariationId: state.activeVariationId,
         viewMode: state.viewMode,
       }),
+      migrate: (persistedState, version) => {
+        const state = persistedState as Partial<DesignState>
+
+        // Migrate from version 1 (or no version) to version 2: add size to typography
+        if (version < 2 && state.variations) {
+          state.variations = state.variations.map((v) => ({
+            ...v,
+            typography: migrateTypography(v.typography),
+          }))
+        }
+
+        return state as DesignState
+      },
       onRehydrateStorage: () => (_state, error) => {
         if (error) {
           console.error('Failed to rehydrate font-previewer state:', error)

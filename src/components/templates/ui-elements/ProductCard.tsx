@@ -1,4 +1,5 @@
 import type { TemplateProps } from '../types'
+import { getFontStyle } from '../types'
 import { Star, ShoppingCart } from 'lucide-react'
 
 const products = [
@@ -15,8 +16,8 @@ export function ProductCard({ typography, colors }: TemplateProps) {
     >
       <div className="max-w-6xl mx-auto">
         <h2
-          className="text-2xl font-bold mb-8"
-          style={{ fontFamily: typography.h2.font }}
+          className="font-bold mb-8"
+          style={getFontStyle(typography.h2)}
         >
           Featured Products
         </h2>
@@ -45,7 +46,7 @@ export function ProductCard({ typography, colors }: TemplateProps) {
               <div className="p-4">
                 <h3
                   className="font-semibold mb-1"
-                  style={{ fontFamily: typography.h3.font }}
+                  style={getFontStyle(typography.h3)}
                 >
                   {product.name}
                 </h3>
@@ -63,24 +64,25 @@ export function ProductCard({ typography, colors }: TemplateProps) {
                     ))}
                   </div>
                   <span
-                    className="text-xs opacity-60"
-                    style={{ fontFamily: typography.p2.font }}
+                    className="opacity-60"
+                    style={{ ...getFontStyle(typography.p2), fontSize: `${typography.p2.size * 0.85}px` }}
                   >
                     ({product.reviews})
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span
-                    className="text-lg font-bold"
-                    style={{ fontFamily: typography.h3.font, color: colors.main }}
+                    className="font-bold"
+                    style={{ ...getFontStyle(typography.h3), color: colors.main }}
                   >
                     {product.price}
                   </span>
                   <button
-                    className="text-sm font-medium px-3 py-1 rounded border transition-colors hover:bg-opacity-10"
+                    className="font-medium px-3 py-1 rounded border transition-colors hover:bg-opacity-10"
                     style={{
                       borderColor: colors.main,
                       color: colors.main,
+                      fontSize: `${typography.p2.size}px`,
                     }}
                   >
                     Add to Cart

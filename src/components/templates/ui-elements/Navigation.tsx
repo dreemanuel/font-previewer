@@ -1,4 +1,5 @@
 import type { TemplateProps } from '../types'
+import { getFontStyle } from '../types'
 import { Menu, Search, User } from 'lucide-react'
 
 const navItems = ['Products', 'Solutions', 'Pricing', 'Resources']
@@ -16,8 +17,8 @@ export function Navigation({ typography, colors }: TemplateProps) {
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-8">
           <h1
-            className="text-xl font-bold"
-            style={{ fontFamily: typography.h3.font }}
+            className="font-bold"
+            style={getFontStyle(typography.h3)}
           >
             Brand
           </h1>
@@ -26,8 +27,8 @@ export function Navigation({ typography, colors }: TemplateProps) {
               <li key={item}>
                 <a
                   href="#"
-                  className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity"
-                  style={{ fontFamily: typography.p2.font }}
+                  className="font-medium opacity-70 hover:opacity-100 transition-opacity"
+                  style={getFontStyle(typography.p2)}
                 >
                   {item}
                 </a>
@@ -43,8 +44,8 @@ export function Navigation({ typography, colors }: TemplateProps) {
             <User className="w-5 h-5" />
           </button>
           <button
-            className="px-4 py-2 rounded-lg text-sm font-medium transition-opacity hover:opacity-90"
-            style={{ backgroundColor: colors.main, color: colors.textInv }}
+            className="px-4 py-2 rounded-lg font-medium transition-opacity hover:opacity-90"
+            style={{ backgroundColor: colors.main, color: colors.textInv, fontSize: `${typography.p2.size}px` }}
           >
             Get Started
           </button>

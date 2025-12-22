@@ -1,4 +1,5 @@
 import type { TemplateProps } from '../types'
+import { getFontStyle } from '../types'
 
 export function CtaBanner({ typography, colors }: TemplateProps) {
   return (
@@ -8,14 +9,14 @@ export function CtaBanner({ typography, colors }: TemplateProps) {
     >
       <div className="max-w-4xl mx-auto text-center">
         <h2
-          className="text-3xl font-bold mb-4"
-          style={{ fontFamily: typography.h2.font }}
+          className="font-bold mb-4"
+          style={getFontStyle(typography.h2)}
         >
           Ready to Get Started?
         </h2>
         <p
-          className="text-lg mb-8 opacity-90"
-          style={{ fontFamily: typography.p1.font }}
+          className="mb-8 opacity-90"
+          style={getFontStyle(typography.p1)}
         >
           Join thousands of satisfied customers and transform your workflow today.
         </p>

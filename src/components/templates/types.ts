@@ -17,3 +17,10 @@ export const defaultText = {
 export function getText(config: { text: string }, fallback: string): string {
   return config.text.trim() || fallback
 }
+
+export function getFontStyle(config: { font: string; size: number }) {
+  return {
+    fontFamily: config.font !== 'system-ui' ? config.font : undefined,
+    fontSize: `${config.size}px`,
+  }
+}

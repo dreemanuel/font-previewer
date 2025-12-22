@@ -1,4 +1,5 @@
 import type { TemplateProps } from '../types'
+import { getFontStyle } from '../types'
 
 const footerLinks = {
   Product: ['Features', 'Pricing', 'Integrations', 'Changelog'],
@@ -18,14 +19,14 @@ export function Footer({ typography, colors }: TemplateProps) {
           {/* Brand */}
           <div className="md:col-span-1">
             <h3
-              className="text-xl font-bold mb-4"
-              style={{ fontFamily: typography.h3.font }}
+              className="font-bold mb-4"
+              style={getFontStyle(typography.h3)}
             >
               Brand
             </h3>
             <p
-              className="text-sm opacity-70"
-              style={{ fontFamily: typography.p2.font }}
+              className="opacity-70"
+              style={{ ...getFontStyle(typography.p2), fontSize: `${typography.p2.size * 0.9}px` }}
             >
               Building the future of design tools.
             </p>
@@ -36,7 +37,7 @@ export function Footer({ typography, colors }: TemplateProps) {
             <div key={category}>
               <h4
                 className="font-semibold mb-3"
-                style={{ fontFamily: typography.p2.font }}
+                style={getFontStyle(typography.p2)}
               >
                 {category}
               </h4>
@@ -45,8 +46,8 @@ export function Footer({ typography, colors }: TemplateProps) {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm opacity-70 hover:opacity-100 transition-opacity"
-                      style={{ fontFamily: typography.p2.font }}
+                      className="opacity-70 hover:opacity-100 transition-opacity"
+                      style={{ ...getFontStyle(typography.p2), fontSize: `${typography.p2.size * 0.9}px` }}
                     >
                       {link}
                     </a>
@@ -58,8 +59,8 @@ export function Footer({ typography, colors }: TemplateProps) {
         </div>
 
         <div
-          className="pt-8 border-t text-sm text-center opacity-60"
-          style={{ borderColor: colors.textInv + '20', fontFamily: typography.p2.font }}
+          className="pt-8 border-t text-center opacity-60"
+          style={{ borderColor: colors.textInv + '20', ...getFontStyle(typography.p2), fontSize: `${typography.p2.size * 0.9}px` }}
         >
           © 2025 Brand. All rights reserved.
         </div>

@@ -24,11 +24,15 @@ export type ComponentId =
   | 'user-profile'
   | 'form-section'
 
+// Font size options (in pixels)
+export type FontSize = 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 36 | 40 | 48 | 56 | 64 | 72 | 80 | 96
+
 // Configuration for a single typography token
 export interface TokenConfig {
   font: string
   source: 'google' | 'local' | 'system'
   text: string
+  size: FontSize
   localFontData?: string // Base64 encoded font data for local fonts
 }
 

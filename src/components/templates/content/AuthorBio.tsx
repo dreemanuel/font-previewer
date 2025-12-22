@@ -1,5 +1,5 @@
 import type { TemplateProps } from '../types'
-import { getText } from '../types'
+import { getText, getFontStyle } from '../types'
 import { Twitter, Linkedin, Github } from 'lucide-react'
 
 export function AuthorBio({ typography, colors }: TemplateProps) {
@@ -15,8 +15,8 @@ export function AuthorBio({ typography, colors }: TemplateProps) {
         >
           <div className="flex gap-6">
             <div
-              className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold shrink-0"
-              style={{ backgroundColor: colors.main, color: colors.textInv }}
+              className="w-20 h-20 rounded-full flex items-center justify-center font-bold shrink-0"
+              style={{ backgroundColor: colors.main, color: colors.textInv, fontSize: `${typography.h3.size}px` }}
             >
               AS
             </div>
@@ -24,28 +24,28 @@ export function AuthorBio({ typography, colors }: TemplateProps) {
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <h3
-                    className="text-lg font-bold"
-                    style={{ fontFamily: typography.h3.font }}
+                    className="font-bold"
+                    style={getFontStyle(typography.h3)}
                   >
                     Alex Smith
                   </h3>
                   <p
-                    className="text-sm opacity-60"
-                    style={{ fontFamily: typography.p2.font }}
+                    className="opacity-60"
+                    style={{ ...getFontStyle(typography.p2), fontSize: `${typography.p2.size * 0.9}px` }}
                   >
                     Senior Developer & Writer
                   </p>
                 </div>
                 <button
-                  className="px-4 py-1.5 rounded-full text-sm font-medium transition-opacity hover:opacity-80"
-                  style={{ backgroundColor: colors.main, color: colors.textInv }}
+                  className="px-4 py-1.5 rounded-full font-medium transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: colors.main, color: colors.textInv, fontSize: `${typography.p2.size * 0.9}px` }}
                 >
                   Follow
                 </button>
               </div>
               <p
                 className="mb-4 opacity-80"
-                style={{ fontFamily: typography.p2.font }}
+                style={getFontStyle(typography.p2)}
               >
                 {getText(typography.p2, 'Full-stack developer with 10+ years of experience. Passionate about clean code, developer tools, and teaching. Author of several popular open-source projects.')}
               </p>

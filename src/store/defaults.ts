@@ -6,26 +6,31 @@ export const defaultTypography: TypographyConfig = {
     font: 'system-ui',
     source: 'system',
     text: '',
+    size: 48,
   },
   h2: {
     font: 'system-ui',
     source: 'system',
     text: '',
+    size: 36,
   },
   h3: {
     font: 'system-ui',
     source: 'system',
     text: '',
+    size: 24,
   },
   p1: {
     font: 'system-ui',
     source: 'system',
     text: '',
+    size: 18,
   },
   p2: {
     font: 'system-ui',
     source: 'system',
     text: '',
+    size: 14,
   },
 }
 
@@ -45,8 +50,8 @@ export const defaultColorTokens: ColorTokens = {
   textInv: DEFAULT_NEAR_WHITE,
 }
 
-// Default selected components
-export const defaultSelectedComponents: ComponentId[] = ['hero']
+// Default selected components (show a good variety on first load)
+export const defaultSelectedComponents: ComponentId[] = ['hero', 'features', 'testimonial']
 
 // Generate a unique ID
 export const generateId = (): string => {

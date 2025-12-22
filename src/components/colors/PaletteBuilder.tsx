@@ -44,7 +44,7 @@ export function PaletteBuilder() {
         {canAddMore && (
           <button
             onClick={handleAddColor}
-            className="w-10 h-10 rounded-lg border-2 border-dashed border-gray-300 text-gray-400 hover:border-gray-400 hover:text-gray-500 transition-colors flex items-center justify-center"
+            className="w-10 h-10 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 hover:border-gray-400 dark:hover:border-gray-500 hover:text-gray-500 dark:hover:text-gray-400 transition-colors flex items-center justify-center"
             title="Add color"
           >
             <Plus className="w-4 h-4" />
@@ -57,11 +57,11 @@ export function PaletteBuilder() {
 
       {/* Default indicator */}
       {isDefault && (
-        <p className="text-xs text-gray-400">Using default colors</p>
+        <p className="text-xs text-gray-400 dark:text-gray-500">Using default colors</p>
       )}
 
       {/* Color count */}
-      <p className="text-xs text-gray-400">
+      <p className="text-xs text-gray-400 dark:text-gray-500">
         {palette.length} / {MAX_COLORS} colors
       </p>
     </div>

@@ -29,7 +29,7 @@ export function LoremGenerator({ token, currentText, onGenerate }: LoremGenerato
     <div className="flex items-center gap-1">
       <button
         onClick={handleRandom}
-        className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors"
+        className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded transition-colors"
         title="Generate random text"
       >
         <Shuffle className="w-3.5 h-3.5" />
@@ -39,14 +39,14 @@ export function LoremGenerator({ token, currentText, onGenerate }: LoremGenerato
         <>
           <button
             onClick={handleLonger}
-            className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors"
+            className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded transition-colors"
             title="Make longer"
           >
             <Plus className="w-3.5 h-3.5" />
           </button>
           <button
             onClick={handleShorter}
-            className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors"
+            className="p-1.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded transition-colors"
             title="Make shorter"
           >
             <Minus className="w-3.5 h-3.5" />

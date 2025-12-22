@@ -1,5 +1,5 @@
 import type { TemplateProps } from '../types'
-import { getText, defaultText } from '../types'
+import { getText, getFontStyle } from '../types'
 import { Zap, Shield, Sparkles } from 'lucide-react'
 
 const features = [
@@ -16,8 +16,8 @@ export function FeaturesGrid({ typography, colors }: TemplateProps) {
     >
       <div className="max-w-6xl mx-auto">
         <h2
-          className="text-3xl font-bold text-center mb-12"
-          style={{ fontFamily: typography.h2.font }}
+          className="font-bold text-center mb-12"
+          style={getFontStyle(typography.h2)}
         >
           {getText(typography.h2, 'Why Choose Us')}
         </h2>
@@ -35,14 +35,14 @@ export function FeaturesGrid({ typography, colors }: TemplateProps) {
                 <feature.icon className="w-6 h-6" style={{ color: colors.main }} />
               </div>
               <h3
-                className="text-lg font-semibold mb-2"
-                style={{ fontFamily: typography.h3.font }}
+                className="font-semibold mb-2"
+                style={getFontStyle(typography.h3)}
               >
                 {feature.title}
               </h3>
               <p
                 className="opacity-70"
-                style={{ fontFamily: typography.p2.font }}
+                style={getFontStyle(typography.p2)}
               >
                 {feature.description}
               </p>

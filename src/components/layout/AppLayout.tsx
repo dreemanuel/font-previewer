@@ -3,7 +3,7 @@ import { Canvas } from './Canvas'
 
 export function AppLayout() {
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-screen bg-white dark:bg-gray-900">
       {/* Sidebar - hidden on small screens, visible on md+ */}
       <div className="hidden md:block">
         <Sidebar />

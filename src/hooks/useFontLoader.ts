@@ -79,3 +79,5 @@ export function useFont(fontFamily: string) {
 
   return getFontState(fontFamily)
 }
+
+export { useFontPreloader } from './useFontPreloader'

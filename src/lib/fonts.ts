@@ -75,6 +75,11 @@ const loadingFonts = new Map<string, Promise<void>>()
  * Load a Google Font by injecting a CSS link
  */
 export function loadGoogleFont(fontFamily: string): Promise<void> {
+  // Skip system fonts - they're CSS keywords, not Google Fonts
+  if (fontFamily === 'system-ui' || fontFamily.startsWith('system')) {
+    return Promise.resolve()
+  }
+
   // Already loaded
   if (loadedFonts.has(fontFamily)) {
     return Promise.resolve()

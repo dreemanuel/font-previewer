@@ -23,17 +23,17 @@ export function TokenAssignment() {
 
   return (
     <div className="space-y-2">
-      <p className="text-xs text-gray-500 mb-2">Assign colors to tokens</p>
+      <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Assign colors to tokens</p>
       {colorTokens.map(({ id, label, description }) => (
         <div key={id} className="flex items-center gap-2">
           <div className="flex-1 min-w-0">
-            <span className="text-sm text-gray-700">{label}</span>
-            <span className="text-xs text-gray-400 ml-1">({description})</span>
+            <span className="text-sm text-gray-700 dark:text-gray-200">{label}</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500 ml-1">({description})</span>
           </div>
           <select
             value={activeVariation.colorTokens[id]}
             onChange={(e) => handleChange(id, e.target.value)}
-            className="w-24 px-2 py-1 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-24 px-2 py-1 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             style={{
               backgroundColor: activeVariation.colorTokens[id],
               color: activeVariation.colorTokens[id] === '#1a1a1a' ||

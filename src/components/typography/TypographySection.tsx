@@ -5,7 +5,7 @@ import { FontSelector } from './FontSelector'
 import { useDesignStore, selectActiveVariation } from '../../store'
 import { loadGoogleFont } from '../../lib/fonts'
 import { restoreLocalFont } from '../../hooks/useLocalFont'
-import type { TypographyToken } from '../../store'
+import type { TypographyToken, FontSize } from '../../store'
 
 const tokens: TypographyToken[] = ['h1', 'h2', 'h3', 'p1', 'p2']
 
@@ -53,12 +53,16 @@ export function TypographySection() {
     setTypographyToken(activeVariation.id, token, { text })
   }
 
+  const handleSizeChange = (token: TypographyToken, size: FontSize) => {
+    setTypographyToken(activeVariation.id, token, { size })
+  }
+
   return (
     <>
-      <section className="p-4 border-b border-gray-200">
+      <section className="p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-2 mb-4">
-          <Type className="w-4 h-4 text-gray-500" />
-          <h2 className="text-sm font-medium text-gray-700">Typography</h2>
+          <Type className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+          <h2 className="text-sm font-medium text-gray-700 dark:text-gray-200">Typography</h2>
         </div>
         <div className="space-y-3">
           {tokens.map((token) => (
@@ -68,6 +72,7 @@ export function TypographySection() {
               config={activeVariation.typography[token]}
               onFontClick={() => handleFontClick(token)}
               onTextChange={(text) => handleTextChange(token, text)}
+              onSizeChange={(size) => handleSizeChange(token, size)}
               onLocalFontLoaded={(name, data) => handleLocalFontLoaded(token, name, data)}
             />
           ))}

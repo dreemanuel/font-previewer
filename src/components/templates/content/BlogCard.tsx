@@ -1,5 +1,5 @@
 import type { TemplateProps } from '../types'
-import { getText } from '../types'
+import { getText, getFontStyle } from '../types'
 import { Clock, ArrowRight } from 'lucide-react'
 
 const posts = [
@@ -31,8 +31,8 @@ export function BlogCard({ typography, colors }: TemplateProps) {
     >
       <div className="max-w-6xl mx-auto">
         <h2
-          className="text-2xl font-bold mb-8"
-          style={{ fontFamily: typography.h2.font }}
+          className="font-bold mb-8"
+          style={getFontStyle(typography.h2)}
         >
           {getText(typography.h2, 'Latest Articles')}
         </h2>
@@ -48,42 +48,42 @@ export function BlogCard({ typography, colors }: TemplateProps) {
                 style={{ backgroundColor: colors.main + '10' }}
               >
                 <span
-                  className="text-4xl font-bold opacity-20"
-                  style={{ fontFamily: typography.h1.font }}
+                  className="font-bold opacity-20"
+                  style={{ ...getFontStyle(typography.h1), fontSize: `${typography.h1.size * 0.8}px` }}
                 >
                   {index + 1}
                 </span>
               </div>
               <div className="p-5">
                 <span
-                  className="text-xs font-medium px-2 py-1 rounded"
-                  style={{ backgroundColor: colors.alt + '20', color: colors.alt }}
+                  className="font-medium px-2 py-1 rounded"
+                  style={{ backgroundColor: colors.alt + '20', color: colors.alt, fontSize: `${typography.p2.size * 0.85}px` }}
                 >
                   {post.category}
                 </span>
                 <h3
-                  className="text-lg font-semibold mt-3 mb-2"
-                  style={{ fontFamily: typography.h3.font }}
+                  className="font-semibold mt-3 mb-2"
+                  style={getFontStyle(typography.h3)}
                 >
                   {post.title}
                 </h3>
                 <p
-                  className="text-sm opacity-70 mb-4"
-                  style={{ fontFamily: typography.p2.font }}
+                  className="opacity-70 mb-4"
+                  style={getFontStyle(typography.p2)}
                 >
                   {post.excerpt}
                 </p>
                 <div className="flex items-center justify-between">
                   <span
-                    className="text-xs opacity-60 flex items-center gap-1"
-                    style={{ fontFamily: typography.p2.font }}
+                    className="opacity-60 flex items-center gap-1"
+                    style={{ ...getFontStyle(typography.p2), fontSize: `${typography.p2.size * 0.85}px` }}
                   >
                     <Clock className="w-3 h-3" />
                     {post.readTime}
                   </span>
                   <span
-                    className="text-sm font-medium flex items-center gap-1"
-                    style={{ color: colors.main }}
+                    className="font-medium flex items-center gap-1"
+                    style={{ color: colors.main, fontSize: `${typography.p2.size}px` }}
                   >
                     Read more <ArrowRight className="w-3 h-3" />
                   </span>

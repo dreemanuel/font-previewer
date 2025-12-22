@@ -9,6 +9,7 @@ export type {
   ColorTokens,
   Variation,
   ViewMode,
+  FontSize,
 } from './types'
 export {
   defaultTypography,

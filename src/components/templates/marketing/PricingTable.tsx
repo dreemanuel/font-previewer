@@ -1,4 +1,5 @@
 import type { TemplateProps } from '../types'
+import { getFontStyle } from '../types'
 import { Check } from 'lucide-react'
 
 const plans = [
@@ -30,8 +31,8 @@ export function PricingTable({ typography, colors }: TemplateProps) {
     >
       <div className="max-w-6xl mx-auto">
         <h2
-          className="text-3xl font-bold text-center mb-12"
-          style={{ fontFamily: typography.h2.font }}
+          className="font-bold text-center mb-12"
+          style={getFontStyle(typography.h2)}
         >
           Simple Pricing
         </h2>
@@ -46,19 +47,19 @@ export function PricingTable({ typography, colors }: TemplateProps) {
               }}
             >
               <h3
-                className="text-xl font-semibold mb-2"
-                style={{ fontFamily: typography.h3.font }}
+                className="font-semibold mb-2"
+                style={getFontStyle(typography.h3)}
               >
                 {plan.name}
               </h3>
               <div className="mb-4">
                 <span
-                  className="text-4xl font-bold"
-                  style={{ fontFamily: typography.h2.font }}
+                  className="font-bold"
+                  style={{ ...getFontStyle(typography.h2), fontSize: `${typography.h2.size * 1.2}px` }}
                 >
                   {plan.price}
                 </span>
-                <span className="opacity-60" style={{ fontFamily: typography.p2.font }}>
+                <span className="opacity-60" style={getFontStyle(typography.p2)}>
                   /month
                 </span>
               </div>
@@ -66,7 +67,7 @@ export function PricingTable({ typography, colors }: TemplateProps) {
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-2">
                     <Check className="w-4 h-4" style={{ color: colors.main }} />
-                    <span style={{ fontFamily: typography.p2.font }}>{feature}</span>
+                    <span style={getFontStyle(typography.p2)}>{feature}</span>
                   </li>
                 ))}
               </ul>

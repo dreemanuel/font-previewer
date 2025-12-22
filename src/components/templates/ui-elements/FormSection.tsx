@@ -1,5 +1,5 @@
 import type { TemplateProps } from '../types'
-import { getText } from '../types'
+import { getText, getFontStyle } from '../types'
 
 export function FormSection({ typography, colors }: TemplateProps) {
   return (
@@ -13,14 +13,14 @@ export function FormSection({ typography, colors }: TemplateProps) {
           style={{ borderColor: colors.alt + '30' }}
         >
           <h2
-            className="text-2xl font-bold mb-2"
-            style={{ fontFamily: typography.h2.font }}
+            className="font-bold mb-2"
+            style={getFontStyle(typography.h2)}
           >
             {getText(typography.h2, 'Contact Us')}
           </h2>
           <p
             className="opacity-70 mb-6"
-            style={{ fontFamily: typography.p2.font }}
+            style={getFontStyle(typography.p2)}
           >
             Fill out the form below and we'll get back to you soon.
           </p>
@@ -28,8 +28,8 @@ export function FormSection({ typography, colors }: TemplateProps) {
           <form className="space-y-4">
             <div>
               <label
-                className="block text-sm font-medium mb-1"
-                style={{ fontFamily: typography.p2.font }}
+                className="block font-medium mb-1"
+                style={getFontStyle(typography.p2)}
               >
                 Name
               </label>
@@ -40,15 +40,15 @@ export function FormSection({ typography, colors }: TemplateProps) {
                 style={{
                   borderColor: colors.alt + '30',
                   backgroundColor: colors.bgLight,
-                  fontFamily: typography.p2.font,
+                  ...getFontStyle(typography.p2),
                 }}
               />
             </div>
 
             <div>
               <label
-                className="block text-sm font-medium mb-1"
-                style={{ fontFamily: typography.p2.font }}
+                className="block font-medium mb-1"
+                style={getFontStyle(typography.p2)}
               >
                 Email
               </label>
@@ -59,15 +59,15 @@ export function FormSection({ typography, colors }: TemplateProps) {
                 style={{
                   borderColor: colors.alt + '30',
                   backgroundColor: colors.bgLight,
-                  fontFamily: typography.p2.font,
+                  ...getFontStyle(typography.p2),
                 }}
               />
             </div>
 
             <div>
               <label
-                className="block text-sm font-medium mb-1"
-                style={{ fontFamily: typography.p2.font }}
+                className="block font-medium mb-1"
+                style={getFontStyle(typography.p2)}
               >
                 Message
               </label>
@@ -78,7 +78,7 @@ export function FormSection({ typography, colors }: TemplateProps) {
                 style={{
                   borderColor: colors.alt + '30',
                   backgroundColor: colors.bgLight,
-                  fontFamily: typography.p2.font,
+                  ...getFontStyle(typography.p2),
                 }}
               />
             </div>
@@ -92,8 +92,8 @@ export function FormSection({ typography, colors }: TemplateProps) {
               />
               <label
                 htmlFor="terms"
-                className="text-sm opacity-70"
-                style={{ fontFamily: typography.p2.font }}
+                className="opacity-70"
+                style={getFontStyle(typography.p2)}
               >
                 I agree to the terms and conditions
               </label>
@@ -105,7 +105,7 @@ export function FormSection({ typography, colors }: TemplateProps) {
               style={{
                 backgroundColor: colors.main,
                 color: colors.textInv,
-                fontFamily: typography.p2.font,
+                ...getFontStyle(typography.p2),
               }}
             >
               Send Message
