@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
-import { Search, Check, Loader2, X } from 'lucide-react'
+import { Search, Check, Loader2, X, Clock } from 'lucide-react'
 import { searchFonts, loadGoogleFont, isFontLoaded } from '../../lib/fonts'
 import { useGoogleFontsApi, isApiKeyConfigured } from '../../hooks/useGoogleFontsApi'
+import { useDesignStore } from '../../store'
 import type { FontCategory } from '../../lib/googleFontsApi'
 
 interface FontSelectorProps {
@@ -23,6 +24,10 @@ export function FontSelector({ value, onChange, onClose }: FontSelectorProps) {
   const [loadingFont, setLoadingFont] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
+
+  // Recent fonts from store
+  const recentFonts = useDesignStore((s) => s.recentFonts)
+  const addRecentFont = useDesignStore((s) => s.addRecentFont)
 
   // Use API if configured, otherwise use local state for curated list
   const apiEnabled = isApiKeyConfigured()
@@ -72,6 +77,7 @@ export function FontSelector({ value, onChange, onClose }: FontSelectorProps) {
       }
       setLoadingFont(null)
     }
+    addRecentFont(font)
     onChange(font)
     onClose()
   }
@@ -178,6 +184,43 @@ export function FontSelector({ value, onChange, onClose }: FontSelectorProps) {
                 <span className="text-gray-700 dark:text-gray-200">System Font</span>
                 {value === 'system-ui' && <Check className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
               </button>
+
+              {/* Recent Fonts Section */}
+              {recentFonts.length > 0 && !(apiEnabled ? searchQuery : localSearch) && (
+                <>
+                  <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
+                  <div className="px-4 py-2 flex items-center gap-2">
+                    <Clock className="w-3 h-3 text-gray-400 dark:text-gray-500" />
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                      Recent
+                    </span>
+                  </div>
+                  {recentFonts.map((font) => (
+                    <button
+                      key={`recent-${font}`}
+                      onClick={() => handleSelectFont(font)}
+                      disabled={loadingFont === font}
+                      className={`w-full flex items-center justify-between px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors disabled:opacity-50 ${
+                        value === font ? 'bg-blue-50 dark:bg-blue-900/30' : ''
+                      }`}
+                    >
+                      <span
+                        className="text-gray-700 dark:text-gray-200"
+                        style={{
+                          fontFamily: isFontLoaded(font) ? font : undefined
+                        }}
+                      >
+                        {font}
+                      </span>
+                      {loadingFont === font ? (
+                        <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
+                      ) : value === font ? (
+                        <Check className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      ) : null}
+                    </button>
+                  ))}
+                </>
+              )}
 
               {/* Divider */}
               <div className="border-t border-gray-200 dark:border-gray-700 my-1" />

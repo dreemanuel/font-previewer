@@ -121,6 +121,18 @@ export const useDesignStore = create<DesignState>()(
         })
       },
 
+      addRecentFont: (font) => {
+        set((state) => {
+          // Don't add system-ui to recent fonts
+          if (font === 'system-ui') return state
+
+          // Remove font if already in list, then add to front
+          const filtered = state.recentFonts.filter((f) => f !== font)
+          const newRecent = [font, ...filtered].slice(0, 5) // Keep max 5
+          return { recentFonts: newRecent }
+        })
+      },
+
       // Variation management
       addVariation: () => {
         const { variations, activeVariationId } = get()
@@ -176,6 +188,7 @@ export const useDesignStore = create<DesignState>()(
       partialize: (state) => ({
         palette: state.palette,
         selectedComponents: state.selectedComponents,
+        recentFonts: state.recentFonts,
         variations: state.variations,
         activeVariationId: state.activeVariationId,
         viewMode: state.viewMode,

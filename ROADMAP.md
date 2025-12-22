@@ -107,10 +107,10 @@ This document tracks planned features and improvements for the Font Previewer ap
 - Popular pairing presets
 - Pairing by style/mood
 
-#### Recently Used Fonts
-- Track recently selected fonts
-- Quick access in font selector
-- Favorites/bookmarks
+#### ~~Recently Used Fonts~~ ✅ (Completed)
+- ~~Track recently selected fonts~~ ✅
+- ~~Quick access in font selector~~ ✅ (top 5 shown)
+- Favorites/bookmarks (future)
 
 #### Font Preview in Selector
 - Live preview text in font list
@@ -197,7 +197,7 @@ This document tracks planned features and improvements for the Font Previewer ap
 7. Letter spacing control
 8. ~~Drag & drop reordering for previewer~~ ✅ (Completed)
 9. More component templates
-10. Recently used fonts
+10. ~~Recently used fonts~~ ✅ (Completed)
 
 ### Phase 3 - Sharing & Export
 11. Share via URL

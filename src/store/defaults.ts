@@ -72,6 +72,7 @@ export const getDefaultState = () => {
   return {
     palette: [...defaultPalette],
     selectedComponents: [...defaultSelectedComponents],
+    recentFonts: [] as string[],
     variations: [defaultVariation],
     activeVariationId: defaultVariation.id,
     viewMode: 'grid' as const,

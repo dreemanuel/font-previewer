@@ -61,6 +61,9 @@ export interface DesignState {
   // Selected components to preview
   selectedComponents: ComponentId[]
 
+  // Recently used fonts (max 5)
+  recentFonts: string[]
+
   // Design variations
   variations: Variation[]
   activeVariationId: string
@@ -84,6 +87,7 @@ export interface DesignState {
   ) => void
   toggleComponent: (componentId: ComponentId) => void
   reorderComponents: (fromIndex: number, toIndex: number) => void
+  addRecentFont: (font: string) => void
   addVariation: () => void
   removeVariation: (id: string) => void
   setActiveVariation: (id: string) => void
